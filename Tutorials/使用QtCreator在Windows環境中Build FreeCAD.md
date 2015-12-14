@@ -91,7 +91,7 @@ A. 可以，但不保證用同樣步驟可以成功，歡迎幫忙測試和更�
 
 Q. 我的在CMake時一直顯示缺少boost_python該怎麼辦？<br />
 A. 可以從討論區 [這篇](http://forum.freecadweb.org/viewtopic.php?t=12631) 的留言中下載，並將\*.lib檔案放入「libpack/lib」、\*.dll檔放入「libpack/bin」即可解決。<br />
-　 (只適用Visial Stdio 2013版本)<br />
+　 (只適用Visial Studio 2013版本)<br />
 
 Q. 為什麼要修改File Encoding中的Default Encoding，直接使用預設的UTF-8不行嗎？<br />
 A. 也是可以，不過在官方文件中有提到假如使用UTF-8編碼來Encoding，會存在一些字元讓Qt Creator產生error或是warning，<br />
