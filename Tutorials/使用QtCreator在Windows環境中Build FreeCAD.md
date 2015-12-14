@@ -38,46 +38,46 @@
 ##設定Qt相關參數
 
 1. 打開Qt，選擇Tools > Options...<br />
-![01_1](https://github.com/yclilian/3D-Printing-Project/blob/master/Tutorials/Images/01_1.png)<br />
+![01_1](https://github.com/yclilian/3D-Printing-Project/blob/master/Tutorials/Images/qtbuild/01_1.png)<br />
 
 2. 在Text Editor中選取Behavior分頁，把File Encoding中的Default Encoding改為**ISO-8859-1 /...csISOLatin1**。<br />
-![01_2](https://github.com/yclilian/3D-Printing-Project/blob/master/Tutorials/Images/01_2.PNG)<br />
+![01_2](https://github.com/yclilian/3D-Printing-Project/blob/master/Tutorials/Images/qtbuild/01_2.PNG)<br />
 
 3. 在Build & Run中選取CMake分頁，新增CMake路徑如下圖。另外建議也新增一個CMake GUI方便之後使用。<br />
-![01_3](https://github.com/yclilian/3D-Printing-Project/blob/master/Tutorials/Images/01_3.PNG)<br />
+![01_3](https://github.com/yclilian/3D-Printing-Project/blob/master/Tutorials/Images/qtbuild/01_3.PNG)<br />
 
 4. 同樣在Build & Run中，選取Kits分頁來設定需要的Kit。設定如下圖所示，因為我們要開發x86的版本所以選擇MSVC 2013的x86版本，Debugger同樣也選擇x86版，Qt Version則設為None。
 另外跟上一步一樣，建議新增一個使用CMake GUI的Kit，兩者僅在CMake Tool處選取不同的選項。<br />
-![01_4](https://github.com/yclilian/3D-Printing-Project/blob/master/Tutorials/Images/01_4.PNG)
-![01_5](https://github.com/yclilian/3D-Printing-Project/blob/master/Tutorials/Images/01_5.PNG)<br />
+![01_4](https://github.com/yclilian/3D-Printing-Project/blob/master/Tutorials/Images/qtbuild/01_4.PNG)
+![01_5](https://github.com/yclilian/3D-Printing-Project/blob/master/Tutorials/Images/qtbuild/01_5.PNG)<br />
 
 <br />
 ##使用CMake建立Qt專案
 
 1. 選擇File > Open File or Project...，找到剛才clone的FreeCAD資料夾，打開最外層的CMakeLists.txt。<br />
-![02_1](https://github.com/yclilian/3D-Printing-Project/blob/master/Tutorials/Images/02_1.PNG)<br />
+![02_1](https://github.com/yclilian/3D-Printing-Project/blob/master/Tutorials/Images/qtbuild/02_1.PNG)<br />
 
 2. 選擇Build的路徑，因稍早clone的FreeCAD資料夾內已有qtbuild資料夾且該資料夾中存有日後所需的資料，因此推薦設為FreeCAD/qtbuild。<br />
-![02_2](https://github.com/yclilian/3D-Printing-Project/blob/master/Tutorials/Images/02_2.PNG)<br />
+![02_2](https://github.com/yclilian/3D-Printing-Project/blob/master/Tutorials/Images/qtbuild/02_2.PNG)<br />
 
 3. Run CMake時Generator的部分選擇剛剛設定好的Kit(MSVC2013 x86)，接著按Run CMake。<br />
-![02_3](https://github.com/yclilian/3D-Printing-Project/blob/master/Tutorials/Images/02_3.PNG)<br />
+![02_3](https://github.com/yclilian/3D-Printing-Project/blob/master/Tutorials/Images/qtbuild/02_3.PNG)<br />
 
 4. 此時會出錯因為找不到libpack，可將上方的Generator改為先前設定的有CMake GUI的Kit(MSVC2013 x86 CMake GUI)，按下Run CMake後會開啟GUI。<br />
-![02_4](https://github.com/yclilian/3D-Printing-Project/blob/master/Tutorials/Images/02_4.PNG)<br />
+![02_4](https://github.com/yclilian/3D-Printing-Project/blob/master/Tutorials/Images/qtbuild/02_4.PNG)<br />
 
 5. 這裡要為Project做一些設定，首先找到CMAKE_BUILD_TYPE，將它設定為Release。<br />
-![02_5](https://github.com/yclilian/3D-Printing-Project/blob/master/Tutorials/Images/02_5.PNG)<br />
+![02_5](https://github.com/yclilian/3D-Printing-Project/blob/master/Tutorials/Images/qtbuild/02_5.PNG)<br />
 
 6. 接著找到FREECAD_LIBPACK_DIR將路徑設為你的libpack路徑。<br />
-![02_6](https://github.com/yclilian/3D-Printing-Project/blob/master/Tutorials/Images/02_6.PNG)<br />
+![02_6](https://github.com/yclilian/3D-Printing-Project/blob/master/Tutorials/Images/qtbuild/02_6.PNG)<br />
 
 7. 檢查BUILD_ROBOT與BUILD_PATH是否有勾選，預設我應該有把它關掉了，但如果他還有就把它勾掉（有這兩個的話build會出錯）。<br />
 
 8. 按下Configure，出現成功就關掉，不要Generate。如果你的Configure一直出現找不到boost_python的錯誤，請見下方Q&A。<br />
 
 9. 把Kit換回沒有GUI的MSVC2013 x86，按Run CMake，這次應該會成功了，接著按Finish就會出現Qt的專案了。<br />
-![02_7](https://github.com/yclilian/3D-Printing-Project/blob/master/Tutorials/Images/02_7.png)<br />
+![02_7](https://github.com/yclilian/3D-Printing-Project/blob/master/Tutorials/Images/qtbuild/02_7.png)<br />
 
 10. 按左下角的Build等他跑完（這一步非常非常久）。<br />
 
