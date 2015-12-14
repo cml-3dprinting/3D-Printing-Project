@@ -1,0 +1,16 @@
+import FreeCADGui
+from PySide import QtGui, QtCore
+from pivy import coin
+
+# get a jpg filename
+imgfilename = QtGui.QFileDialog.getOpenFileName(QtGui.qApp.activeWindow(),'Open image file','./../texture', filter="image file (*.jpg *.png *.gif)")
+
+if not str(imgfilename[0])=="":
+	# apply textures
+	for obj in FreeCADGui.Selection.getSelection():
+		obj.ViewObject.Transparency = 0
+		obj.ViewObject.ShapeColor = (1.0,1.0,1.0)
+		rootnode = obj.ViewObject.RootNode
+		tex =  coin.SoTexture2()
+		tex.filename = str(imgfilename[0])
+		rootnode.insertChild(tex,1)

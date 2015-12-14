@@ -1,0 +1,19 @@
+import Mesh,Part,MeshPart
+
+def showObj(shape, name, doc):
+    if doc is None:
+        import FreeCAD
+        doc = FreeCAD.activeDocument() or FreeCAD.newDocument()
+    obj = doc.addObject("Part::Feature", name)
+    obj.Shape = shape
+    return obj
+
+for obj in FreeCADGui.Selection.getSelection():
+	mesh =  obj.Mesh
+	shape = Part.Shape()
+	shape.makeShapeFromMesh(mesh.Topology,0.05) # the second arg is the tolerance for sewing
+	solid = Part.makeSolid(shape)
+
+	showObj(solid, str(obj.Label), None)
+	
+	obj.ViewObject.Visibility = False
