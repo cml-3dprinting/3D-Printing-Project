@@ -66,7 +66,13 @@
 ##Q&A
 
 Q. 在Macro裝上工具列之前或是Macro編輯中可以測試他的功能嗎？<br />
-A. 可以，裝上工具列之前可以從「巨集 > 巨集」的視窗中按右上角的「執行」，編輯中可以從「巨集 > 執行巨集」來測試<br />
-　 目前的功能。<br />
+A. 可以，裝上工具列之前可以從「巨集 > 巨集」的視窗中按右上角的「執行」，<br />
 　 ![03_1](https://github.com/yclilian/3D-Printing-Project/blob/master/Tutorials/Images/macro/03_1.png)<br /> 
+　 編輯中可以從「巨集 > 執行巨集」來測試目前的功能。<br />
 　 ![03_2](https://github.com/yclilian/3D-Printing-Project/blob/master/Tutorials/Images/macro/03_2.png)<br /> 
+
+Q. 除了內建的圖示外，我可以用其他我想要的圖示嗎？<br />
+A. 可以，在設定Macro圖示時可以點選左下角的圖示資料夾，<br />
+　 ![03_3](https://github.com/yclilian/3D-Printing-Project/blob/master/Tutorials/Images/macro/03_3.png)<br /> 
+　 再按綠色的 + 號把你的資料夾加入圖示資料夾的清單內即可（這個動作需要重新啟動FreeCAD後才會被應用）。<br />
+　 ![03_4](https://github.com/yclilian/3D-Printing-Project/blob/master/Tutorials/Images/macro/03_4.png)<br /> 
