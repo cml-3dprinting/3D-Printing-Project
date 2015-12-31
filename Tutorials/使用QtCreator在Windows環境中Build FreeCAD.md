@@ -7,7 +7,7 @@
 ##前言
 
 在安裝過程中會有許多版本相容問題，因此建議依照教學中所使用相同版本來build以減少過程中產生的錯誤。<br />
-(目前試過有build成功的系統環境有Windows 7以及Windows 8.1，其他的系統環境還有待測試)
+(目前試過有build成功的系統環境有Windows 7、Windows 8.1以及Windows 10，其他的系統環境還有待測試)
 
 <br />
 ##前置作業
@@ -32,7 +32,8 @@
 （[官方網站](https://download.qt.io/archive/qt/5.5/5.5.1/)）<br />
 
 7. 下載 [Windows Driver Kit 8.1](http://go.microsoft.com/fwlink/p/?LinkId=393659) ，進入後選擇「wdk\wdksetup.exe」即可，下載完成後安裝，也請記得安裝的位置。<br />
-（PS: 新版的Qt需要使用到kit，因此必須安裝這個才能繼續往下走，詳細可以參考 [官方網站](https://msdn.microsoft.com/en-us/windows/hardware/hh852365.aspx) ） <br /> 
+（PS1: 新版的Qt需要使用到kit，因此必須安裝這個才能繼續往下走，詳細可以參考 [官方網站](https://msdn.microsoft.com/en-us/windows/hardware/hh852365.aspx) ） <br /> 
+（PS2: Windows 10可以下載[Windows driver kit 10](http://go.microsoft.com/fwlink/p/?LinkId=526733)）<br/>
 
 <br />
 ##設定Qt相關參數
