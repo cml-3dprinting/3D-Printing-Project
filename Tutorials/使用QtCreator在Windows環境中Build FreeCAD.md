@@ -58,7 +58,7 @@
 1. 選擇File > Open File or Project...，找到剛才clone的FreeCAD資料夾，打開最外層的CMakeLists.txt。<br />
 ![02_1](https://github.com/yclilian/3D-Printing-Project/blob/master/Tutorials/Images/qtbuild/02_1.PNG)<br />
 
-2. 選擇Build的路徑，因稍早clone的FreeCAD資料夾內已有qtbuild資料夾且該資料夾中存有日後所需的資料，因此推薦設為FreeCAD/qtbuild。<br />
+2. 選擇Build的路徑，因稍早clone的FreeCAD資料夾內已有qtbuild資料夾且該資料夾中存有日後所需的資料，因此推薦設為FreeCAD/qtbuild。（另外在qtbuild資料夾中有些資料夾內的檔案需要另外下載，詳見該資料夾內的README.md檔案）<br />
 ![02_2](https://github.com/yclilian/3D-Printing-Project/blob/master/Tutorials/Images/qtbuild/02_2.PNG)<br />
 
 3. Run CMake時Generator的部分選擇剛剛設定好的Kit(MSVC2013 x86)，接著按Run CMake。<br />
