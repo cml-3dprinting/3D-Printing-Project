@@ -1,6 +1,6 @@
 #使用QtCreator在Windows環境中Build FreeCAD
 
-最近更新: 2015/12/14<br />
+最近更新: 2016/1/2<br />
 官方教學: http://www.freecadweb.org/wiki/index.php?title=CompileOnWindows
 
 <br />
