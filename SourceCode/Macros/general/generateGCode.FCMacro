@@ -1,0 +1,136 @@
+############################################################################
+# Save *.gcode Macro Function
+# Modified by Kelvin on 2016/1/2
+############################################################################
+
+
+
+############################################################################
+# import statements
+############################################################################
+import FreeCAD
+import Mesh
+import sys
+import math
+import os
+import subprocess
+from PySide import QtGui, QtCore
+############################################################################
+
+
+
+############################################################################
+# function define
+############################################################################
+# a function for debugging
+def LOG(message):
+	FreeCAD.Console.PrintMessage(message + "\n")
+
+# this function is written by IKE
+# more information please check "generateSTL.FCMacro"
+def getPlacement(quat, vect, obj):
+  	if quat[3] > -1  and quat[3] < 1:
+  	  	delta = math.acos(quat[3])*2.0
+  	  	scale = math.sin(delta/2)
+  	  	rx = quat[0]/scale
+  	  	ry = quat[1]/scale
+  	  	rz = quat[2]/scale
+  	else:
+  	  	delta = 0
+  	  	rx = 0
+  	  	ry = 0
+  	  	rz = 1
+  	info0 = "translation "+str(vect.x)+" "+str(vect.y)+" "+str(vect.z)
+  	info1 = "rotation "+str(rx)+" "+str(ry)+" "+str(rz)+" "+str(delta)
+	
+  	return info0+" "+info1 
+
+# this function is written by IKE
+# more information please check "generateSTL.FCMacro"
+def generateSTL(fileDirAndName):
+  	# some definitions
+  	placement = App.Placement(App.Vector(0,0,0),App.Rotation(0,0,0,1))
+  	# user need to set this directory where slicing software is located
+	OutDir = fileDirAndName
+
+  	visible_objs = []
+  	SLICER = "./../Slic3r"  # Put your Slicer program location here
+	  	
+	os.chdir(SLICER)
+  	# Get Objects in document
+  	doc = App.ActiveDocument
+  	objs = doc.Objects
+  	# hide all
+  	for obj in objs:
+  	   	if obj.ViewObject.isVisible():
+  	   	   visible_objs.append(obj)
+  	for obj in visible_objs:
+  	  	# get volume
+  	  	volume = obj.Shape.Volume
+  	  	# get Rotation and translation of volume
+  	  	quat = obj.Placement.Rotation.Q
+  	  	vect = obj.Placement.Base
+		
+  	  	pinfo = getPlacement(quat,vect,obj)
+		
+  	  	# reset placement, export it and set at original placement
+  	  	oldPlacement = obj.Placement
+  	  	obj.Placement = placement
+  	  	obj.Placement = oldPlacement
+  		
+		stlFile = OutDir
+  		Mesh.export(visible_objs,stlFile)
+  		subprocess.Popen([SLICER + "Slic3r", stlFile], shell=True)
+
+# convert stl to gcode by CuraEngine
+def generateGCode(gcodefilename):
+	# get temp stl file path & name
+	stlfilename = gcodefilename[0:gcodefilename.rfind('/')] + "/temp.stl"
+
+	# generate a temp stl file
+	generateSTL(stlfilename)
+	
+	# put your CuraEngine program location here
+	CURAENGINE_PATH = "./../CuraEngine/"
+	
+	# Call to use CuraEngine
+	# cmd format:
+	# 	  CuraEngine [-h] [-v] [-m 3x3matrix] [-c <config file>] [-s <settingkey>=<value>] -o <output.gcode> <model.stl>	
+	# often just use:
+	#	  CuraEngine -o output.gcode model.stl
+	#
+	# more information please check following link
+	# http://github.com/Ultimaker/CuraEngine
+	process = subprocess.Popen([CURAENGINE_PATH + "CuraEngine", "-o", gcodefilename, stlfilename])
+	
+	# waiting for the process done
+	while True:
+	    if process.poll() != None:
+			break
+
+	# delete the temp stl file
+	os.remove(stlfilename)
+############################################################################
+
+
+
+############################################################################
+# main code
+############################################################################
+# the path of output gcode
+OUTPUT_DIR_PATH = "./../output gcodes/"
+
+# check if a directory exists and create it if necessary
+if not os.path.exists(OUTPUT_DIR_PATH):
+    os.makedirs(OUTPUT_DIR_PATH)
+
+# get a saving dir and file name 
+gcodefileinfo = QtGui.QFileDialog.getSaveFileName(QtGui.qApp.activeWindow(), "Save GCode file", OUTPUT_DIR_PATH + "NewGCode.gcode", filter="gcode file (*.gcode)")
+
+# convert array to str
+gcodefilename = gcodefileinfo[0]
+
+# check if user want to save file (press save button)
+if not gcodefilename=="":
+	# convert stl to gcode by CuraEngine
+  	generateGCode(gcodefilename)
