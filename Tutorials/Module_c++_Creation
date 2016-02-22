@@ -6,7 +6,10 @@
 http://www.freecadweb.org/wiki/index.php?title=Module_Creation    
 
 2.
-找到"FreeCAD_x86\src\Mod"底下的CMakeLists.txt，加入一行"add_subdirectory(模組名稱)"，這樣子重新Build Up FreeCAD後，開啟FreeCAD在View->WorkBench下就可以找到剛剛新增的WorkBench，選取後會啟動模組，工具列上會多出模組的選單，裡面預設的一個"Hello"按鈕按下去，左下角的Console會顯示"Hello World"(滑鼠游標要離開按鈕上面才不會被其他提示文字蓋掉)
+找到"FreeCAD_x86\src\Mod"底下的CMakeLists.txt，加入一行"add_subdirectory(模組名稱)"，
+這樣子重新Build Up FreeCAD後，開啟FreeCAD在View->WorkBench下就可以找到剛剛新增的WorkBench，
+選取後會啟動模組，工具列上會多出模組的選單，裡面預設的一個"Hello"按鈕按下去，
+左下角的Console會顯示"Hello World"(滑鼠游標要離開按鈕上面才不會被其他提示文字蓋掉)
 
 3.
 首先打開"FreeCAD_x86\src\Mod\模組名稱\Gui\WorkBench.cpp"，找到以下敘述：
