@@ -49,8 +49,6 @@ sMenuText是按鈕上要顯示的字，activated()函式內是按鈕按下後要
 重新編譯FreeCAD好反應新增的內容，附件是建來測試用的簡單WorkBench。[附件](https://www.dropbox.com/s/yo3e1u2avmt9zkl/TestMod.rar?dl=0)
 
 以上大概就是FreeCAD使用C++來建立WorkBench的大致流程
-更詳細的C++ FreeCAD/OpenCascade API因為網路上資訊不是很明確還要再研究
-http://www.freecadweb.org/api/genindex.html  
-http://opencascade.sourcearchive.com/documentation/6.3.0.dfsg.1-1/classes.html
+
 
 
